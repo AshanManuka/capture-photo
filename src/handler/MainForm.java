@@ -12,14 +12,20 @@ public class MainForm {
         getPermission();
     }
 
-    private static void getPermission() {
+    private static void getPermission() throws IOException {
         System.out.print("Do you want to Open camera ?  ");
         Scanner scanner = new Scanner(System.in);
         String select = scanner.next();
 
         if (select.equals("y")){
-           // openCamera();
+            openCamera();
         }
+    }
+
+    private static void openCamera() throws IOException {
+        Webcam webcam = Webcam.getDefault();
+        webcam.open();
+        ImageIO.write(webcam.getImage(), "jpg", new File("firstCapture.jpg"));
     }
 
 }
